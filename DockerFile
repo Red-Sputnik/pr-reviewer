@@ -1,0 +1,18 @@
+# Stage 1: сборка
+FROM golang:1.21-alpine AS builder
+
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN go build -o reviewer ./cmd/server/main.go
+
+# Stage 2: минимальный runtime
+FROM alpine:latest
+
+WORKDIR /app
+COPY --from=builder /app/reviewer .
+
+EXPOSE 8080
+CMD ["./reviewer"]

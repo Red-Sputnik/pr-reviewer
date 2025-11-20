@@ -1,0 +1,19 @@
+# Go binary
+/reviewer
+
+# Ignore editor settings
+.vscode/
+.idea/
+
+# Env files
+.env
+.env.local
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# PostgreSQL volume folders
+db_data/
